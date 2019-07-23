@@ -32,5 +32,27 @@ namespace Bank
 
             source.TransferFunds(destination, 300m);
         }
+
+        [Test]
+        [Ignore("Decide how to implement transaction management")]
+        public void TransferWithInsufficientFundsAtomicity()
+        {
+            Account source = new Account();
+            source.Deposit(200m);
+
+            Account destination = new Account();
+            destination.Deposit(150m);
+
+            try
+            {
+                source.TransferFunds(destination, 300m);
+            }
+            catch (InsufficientFundsException)
+            {
+            }
+
+            Assert.AreEqual(200m, source.Balance);
+            Assert.AreEqual(150m, destination.Balance);
+        }
     }
 }
