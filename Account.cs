@@ -2,6 +2,7 @@ namespace Bank
 {
     public class Account
     {
+        private decimal minimumBalance = 10m;
         private decimal balance;
 
         public void Deposit(decimal amount)
@@ -18,6 +19,11 @@ namespace Bank
         {
             destination.Deposit(amount);
             Withdraw(amount);
+        }
+
+        public decimal MinimumBalance
+        {
+            get { return minimumBalance; }
         }
 
         public decimal Balance
