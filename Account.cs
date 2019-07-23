@@ -18,6 +18,10 @@ namespace Bank
         public void TransferFunds(Account destination, decimal amount)
         {
             destination.Deposit(amount);
+
+            if (balance - amount < minimumBalance)
+                throw new InsufficientFundsException();
+
             Withdraw(amount);
         }
 
